@@ -7,9 +7,9 @@ from gensim.utils import simple_preprocess
 from gensim.models.phrases import Phrases, Phraser
 
 
-class ArxivPreprocessor:
+class ArXivPreprocessor:
 
-    """A text pre-processor for Arxiv abstracts.
+    """A text pre-processor for arXiv abstracts.
 
     Attributes
     ----------
@@ -106,11 +106,14 @@ class ArxivPreprocessor:
         def _remove_latex(doc):
             """Remove text between every two consecutive occurences of "$"."""
             indices = [match.start() for match in re.finditer("\$", doc)]
-            parsed = doc
-            for idx in range(0, len(indices), 2):
-                substring = doc[indices[idx]:indices[idx+1]+1]
-                parsed = parsed.replace(substring, "")
-            return parsed
+            if len(indices) % 2 == 0:
+                parsed = doc
+                for idx in range(0, len(indices), 2):
+                    substring = doc[indices[idx]:indices[idx+1]+1]
+                    parsed = parsed.replace(substring, "")
+                return parsed
+            else:
+                return doc  # cannot process since there are an odd number of "$"s
 
         return [_remove_latex(doc) for doc in documents]
 
