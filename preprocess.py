@@ -74,8 +74,7 @@ class ArxivPreprocessor:
         documents = self.remove_newlines(documents)
         documents = self.tokenize(documents)
         documents = self.remove_stopwords(documents, self.stopwords)
-        documents = self.identify_phrases(documents, max_n=self.max_n,
-                                          threshold=self.n_gram_threshold)
+        documents = self.identify_phrases(documents)
         documents = self.lemmatize(documents, self.pos_tags)
         return documents
 
@@ -97,9 +96,7 @@ class ArxivPreprocessor:
         documents = self.remove_newlines(documents)
         documents = self.tokenize(documents)
         documents = self.remove_stopwords(documents, self.stopwords)
-        documents = self.identify_phrases(documents, max_n=self.max_n,
-                                          threshold=self.n_gram_threshold,
-                                          fit=False)
+        documents = self.identify_phrases(documents, fit=False)
         documents = self.lemmatize(documents, self.pos_tags)
         return documents
 
@@ -111,7 +108,7 @@ class ArxivPreprocessor:
             indices = [match.start() for match in re.finditer("\$", doc)]
             parsed = doc
             for idx in range(0, len(indices), 2):
-                substring = document[indices[idx]:indices[idx+1]+1]
+                substring = doc[indices[idx]:indices[idx+1]+1]
                 parsed = parsed.replace(substring, "")
             return parsed
 
