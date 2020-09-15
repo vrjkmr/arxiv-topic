@@ -105,17 +105,17 @@ class Preprocessor:
 
     def remove_latex_equations(self, documents):
         """Remove LaTex equations."""
-        processed = []
-        for document in documents:
-            # remove text between every two consecutive occurences of "$"
-            indices = [match.start() for match in re.finditer("\$", document)]
-            parsed = document
+
+        def _remove_latex(doc):
+            """Remove text between every two consecutive occurences of "$"."""
+            indices = [match.start() for match in re.finditer("\$", doc)]
+            parsed = doc
             for idx in range(0, len(indices), 2):
                 substring = document[indices[idx]:indices[idx+1]+1]
                 parsed = parsed.replace(substring, "")
-            processed.append(parsed)
-
-        return processed
+            return parsed
+            
+        return [_remove_latex(doc) for doc in documents]
 
     def remove_newlines(self, documents):
         """Remove newline characters and extra spaces."""
