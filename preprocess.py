@@ -9,7 +9,7 @@ from gensim.models.phrases import Phrases, Phraser
 
 class Preprocessor:
 
-    """A text pre-processor.
+    """A text pre-processor for Arxiv abstracts.
 
     Attributes
     ----------
@@ -111,7 +111,8 @@ class Preprocessor:
             indices = [match.start() for match in re.finditer("\$", document)]
             parsed = document
             for idx in range(0, len(indices), 2):
-                parsed = parsed.replace(document[indices[idx]:indices[idx+1]+1], "")
+                substring = document[indices[idx]:indices[idx+1]+1]
+                parsed = parsed.replace(substring, "")
             processed.append(parsed)
 
         return processed
@@ -126,7 +127,7 @@ class Preprocessor:
 
     def remove_stopwords(self, documents, stop_words):
         """Remove stopwords."""
-        return [[word for word in doc if word not in stop_words] 
+        return [[word for word in doc if word not in stop_words]
                 for doc in documents]
 
     def identify_phrases(self, documents, max_n, threshold, fit=True):
@@ -145,7 +146,7 @@ class Preprocessor:
         return processed
 
     def lemmatize(self, documents, pos_tags):
-        """Lemmatize documents."""
+        """Lemmatize documents and extract words by POS tag."""
         lemmatized = []
         for doc in documents:
             tokens = self.nlp(" ".join(doc))
