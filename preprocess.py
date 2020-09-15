@@ -130,17 +130,13 @@ class ArxivPreprocessor:
         return [[word for word in doc if word not in stop_words]
                 for doc in documents]
 
-    def identify_phrases(self,
-                         documents,
-                         max_n,
-                         threshold,
-                         fit=True):
+    def identify_phrases(self, documents, fit=True):
         """Identify and transform phrases using n-grams."""
         processed = documents
         if fit:
             self.n_gram_models = []
             for n in range(2, self.max_n):
-                n_grams = Phrases(processed, threshold=threshold)
+                n_grams = Phrases(processed, threshold=self.n_gram_threshold)
                 n_gram_model = Phraser(n_grams)
                 self.n_gram_models.append(n_gram_model)
                 processed = [n_gram_model[doc] for doc in processed]
