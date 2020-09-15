@@ -27,7 +27,7 @@ class TextPreprocessor:
     def __init__(self):
         pass
 
-    def fit_transform(self, documents, additional_stopwords=["_"], max_n=3,
+    def fit_transform(self, documents, additional_stopwords=[], max_n=3,
                       n_gram_threshold=100, pos_tags=["NOUN", "ADJ", "PROPN"]):
         """Pre-process documents after fitting.
 
@@ -38,7 +38,7 @@ class TextPreprocessor:
 
         additional_stopwords : array_like
             List of stopwords (in addition to gensim stopwords).
-            Defaults to ["_"].
+            Defaults to [].
 
         max_n : int
             Maximum n value for n-gram phrase learning. Enables phrases up
@@ -66,6 +66,7 @@ class TextPreprocessor:
         self.stopwords.extend(additional_stopwords)
         self.nlp = spacy.load("en_core_web_sm", disable=["parser", "ner"])
 
+        documents = self.remove_latex_equations(documents)
         documents = self.remove_newlines(documents)
         documents = self.tokenize(documents)
         documents = self.remove_stopwords(documents, self.stopwords)
@@ -89,6 +90,7 @@ class TextPreprocessor:
             Tokenized and pre-processed documents.
         """
 
+        documents = self.remove_latex_equations(documents)
         documents = self.remove_newlines(documents)
         documents = self.tokenize(documents)
         documents = self.remove_stopwords(documents, self.stopwords)
@@ -99,9 +101,20 @@ class TextPreprocessor:
 
         return documents
 
+    def remove_latex_equations(self, documents):
+        """Remove LaTex equations."""
+        processed = []
+        for document in documents:
+            indices = [match.start() for match in re.finditer("\$", document)]
+            parsed = document
+            for idx in range(0, len(indices), 2):
+                parsed = parsed.replace(document[indices[idx]:indices[idx+1]+1], "")
+            processed.append(parsed)
+        return processed
+
     def remove_newlines(self, documents):
-        """Remove newline characters."""
-        return [re.sub("\s", " ", doc) for doc in documents]
+        """Remove newline characters and extra spaces."""
+        return [re.sub("\s+", " ", doc) for doc in documents]
 
     def tokenize(self, documents):
         """Tokenize a document using Gensim pre-processing."""
