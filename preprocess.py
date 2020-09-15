@@ -132,8 +132,8 @@ class ArxivPreprocessor:
 
     def identify_phrases(self, documents, max_n, threshold, fit=True):
         """Identify and transform phrases using n-grams."""
-        processed = documents
         
+        processed = documents
         if fit:
             self.n_gram_models = []
             for n in range(2, self.max_n):
@@ -149,9 +149,11 @@ class ArxivPreprocessor:
 
     def lemmatize(self, documents, pos_tags):
         """Lemmatize documents and extract words by POS tag."""
+
         lemmatized = []
         for doc in documents:
             tokens = self.nlp(" ".join(doc))
             lemmatized.append([token.lemma_ for token in tokens
                                if token.pos_ in pos_tags])
+
         return lemmatized
