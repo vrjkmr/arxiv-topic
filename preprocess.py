@@ -27,8 +27,12 @@ class ArxivPreprocessor:
     def __init__(self):
         pass
 
-    def fit_transform(self, documents, additional_stopwords=[], max_n=3,
-                      n_gram_threshold=100, pos_tags=["NOUN", "ADJ", "PROPN"]):
+    def fit_transform(self,
+                      documents,
+                      additional_stopwords=[],
+                      max_n=3,
+                      n_gram_threshold=100,
+                      pos_tags=["NOUN", "ADJ", "PROPN"]):
         """Fit to documents and transform them.
 
         Parameters
@@ -126,7 +130,11 @@ class ArxivPreprocessor:
         return [[word for word in doc if word not in stop_words]
                 for doc in documents]
 
-    def identify_phrases(self, documents, max_n, threshold, fit=True):
+    def identify_phrases(self,
+                         documents,
+                         max_n,
+                         threshold,
+                         fit=True):
         """Identify and transform phrases using n-grams."""
         processed = documents
         if fit:
