@@ -29,7 +29,7 @@ class ArxivPreprocessor:
 
     def fit_transform(self, documents, additional_stopwords=[], max_n=3,
                       n_gram_threshold=100, pos_tags=["NOUN", "ADJ", "PROPN"]):
-        """Pre-process documents after fitting.
+        """Fit to documents and transform them.
 
         Parameters
         ----------
@@ -78,7 +78,7 @@ class ArxivPreprocessor:
         return documents
 
     def transform(self, documents):
-        """Pre-process documents.
+        """Transform documents.
 
         Parameters
         ----------
