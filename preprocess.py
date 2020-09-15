@@ -36,21 +36,19 @@ class ArxivPreprocessor:
         documents : array_like
             Sequence of document strings.
 
-        additional_stopwords : array_like
+        additional_stopwords : array_like, default=[]
             List of stopwords (in addition to gensim stopwords).
-            Defaults to [].
 
-        max_n : int
+        max_n : int, default=3
             Maximum n value for n-gram phrase learning. Enables phrases up
-            to n words in length. Defaults to 3.
+            to n words in length.
 
-        n_gram_threshold : int
+        n_gram_threshold : int, default=100
             Minimum n-gram frequency threshold. All n-grams with a frequency
-            lower than the threshold will be ignored. Defaults to 100.
+            lower than the threshold will be ignored.
 
-        pos_tags : array_like
-            Part-of-speech tags extracted from distinct tokens. Defaults to
-            ["NOUN", "ADJ", "PROPN"].
+        pos_tags : array_like, default=["NOUN", "ADJ", "PROPN"]
+            Part-of-speech tags extracted from distinct tokens.
 
         Returns
         -------
