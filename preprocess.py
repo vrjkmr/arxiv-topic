@@ -7,7 +7,7 @@ from gensim.utils import simple_preprocess
 from gensim.models.phrases import Phrases, Phraser
 
 
-class Preprocessor:
+class ArxivPreprocessor:
 
     """A text pre-processor for Arxiv abstracts.
 
@@ -114,7 +114,7 @@ class Preprocessor:
                 substring = document[indices[idx]:indices[idx+1]+1]
                 parsed = parsed.replace(substring, "")
             return parsed
-            
+
         return [_remove_latex(doc) for doc in documents]
 
     def remove_newlines(self, documents):
