@@ -7,7 +7,7 @@ from gensim.utils import simple_preprocess
 from gensim.models.phrases import Phrases, Phraser
 
 
-class TextPreprocessor:
+class Preprocessor:
 
     """A text pre-processor.
 
@@ -59,6 +59,7 @@ class TextPreprocessor:
 
         """
 
+        # set instance attributes
         self.max_n = max_n
         self.n_gram_threshold = n_gram_threshold
         self.pos_tags = pos_tags
@@ -66,6 +67,7 @@ class TextPreprocessor:
         self.stopwords.extend(additional_stopwords)
         self.nlp = spacy.load("en_core_web_sm", disable=["parser", "ner"])
 
+        # fit-transform documents
         documents = self.remove_latex_equations(documents)
         documents = self.remove_newlines(documents)
         documents = self.tokenize(documents)
@@ -105,11 +107,13 @@ class TextPreprocessor:
         """Remove LaTex equations."""
         processed = []
         for document in documents:
+            # remove text between every two consecutive occurences of "$"
             indices = [match.start() for match in re.finditer("\$", document)]
             parsed = document
             for idx in range(0, len(indices), 2):
                 parsed = parsed.replace(document[indices[idx]:indices[idx+1]+1], "")
             processed.append(parsed)
+
         return processed
 
     def remove_newlines(self, documents):
@@ -122,26 +126,23 @@ class TextPreprocessor:
 
     def remove_stopwords(self, documents, stop_words):
         """Remove stopwords."""
-        return [[word
-                 for word in doc
-                 if word not in stop_words] for doc in documents]
+        return [[word for word in doc if word not in stop_words] 
+                for doc in documents]
 
     def identify_phrases(self, documents, max_n, threshold, fit=True):
         """Identify and transform phrases using n-grams."""
-        documents_processed = documents
+        processed = documents
         if fit:
             self.n_gram_models = []
             for n in range(2, self.max_n):
-                n_grams = Phrases(documents_processed, threshold=threshold)
+                n_grams = Phrases(processed, threshold=threshold)
                 n_gram_model = Phraser(n_grams)
                 self.n_gram_models.append(n_gram_model)
-                documents_processed = [n_gram_model[doc]
-                                       for doc in documents_processed]
+                processed = [n_gram_model[doc] for doc in processed]
         else:
             for model in self.n_gram_models:
-                documents_processed = [model[doc]
-                                       for doc in documents_processed]
-        return documents_processed
+                processed = [model[doc] for doc in processed]
+        return processed
 
     def lemmatize(self, documents, pos_tags):
         """Lemmatize documents."""
