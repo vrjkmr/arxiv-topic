@@ -75,7 +75,6 @@ class ArxivPreprocessor:
         documents = self.identify_phrases(documents, max_n=self.max_n,
                                           threshold=self.n_gram_threshold)
         documents = self.lemmatize(documents, self.pos_tags)
-
         return documents
 
     def transform(self, documents):
@@ -100,7 +99,6 @@ class ArxivPreprocessor:
                                           threshold=self.n_gram_threshold,
                                           fit=False)
         documents = self.lemmatize(documents, self.pos_tags)
-
         return documents
 
     def remove_latex_equations(self, documents):
