@@ -19,6 +19,9 @@ class ArXivDataset:
     corpus : array_like
         List of term-document frequencies for each document.
 
+    processor : ArXivPreprocessor
+        Document pre-processor. 
+
     """
 
     def __init__(self):
