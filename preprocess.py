@@ -70,12 +70,19 @@ class ArXivPreprocessor:
         self.nlp = spacy.load("en_core_web_sm", disable=["parser", "ner"])
 
         # fit-transform documents
+        print(" [1/6] Removing LaTex equations...")
         documents = self.remove_latex_equations(documents)
+        print(" [2/6] Removing newlines and extra spaces...")
         documents = self.remove_newlines(documents)
+        print(" [3/6] Tokenizing documents...")
         documents = self.tokenize(documents)
+        print(" [4/6] Removing stopwords...")
         documents = self.remove_stopwords(documents, self.stopwords)
+        print(" [5/6] Identifying n-gram phrases...")
         documents = self.identify_phrases(documents)
+        print(" [6/6] Lemmatizing...")
         documents = self.lemmatize(documents, self.pos_tags)
+        print(" Done.")
         return documents
 
     def transform(self, documents):

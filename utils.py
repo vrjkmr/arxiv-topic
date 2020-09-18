@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
+import pickle
 from gensim.corpora import Dictionary
 
 
@@ -38,6 +39,12 @@ def load_documents(filepath="documents.txt"):
         return documents
 
 
-def build_corpus(documents, idx2word):
-    """Build term-document frequency corpus."""
-    return [idx2word.doc2bow(doc) for doc in documents]
+def export_object(obj, filepath):
+    """Export Python object."""
+    pickle.dump(obj, open(filepath, "wb"))
+
+
+def load_object(filepath):
+    """Load saved Python object."""
+    obj = pickle.load(open(filepath, "rb"))
+    return obj
