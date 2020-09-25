@@ -23,3 +23,17 @@ The final model achieved a coherence score of 49.9%. While this score is quite l
 6. **Deep learning architectures:** "network", "neural", "deep", "architecture", "layer"
 7. **Graph theory:** "graph", "structure", "node", "tree", "edge"
 8. **Medicine and healthcare applications** "patient", "covid", "causal", "treatment", "population"
+
+### Model inference
+
+```python
+from model import TopicModel
+from utils import scrape_arxiv_abstract
+
+model = TopicModel()
+model = model.load("./models/model_001.obj")
+
+paper_url = "https://arxiv.org/abs/1706.03762"
+abstract = scrape_arxiv_abstract(paper_url)
+print(model.predict(abstract))
+```
