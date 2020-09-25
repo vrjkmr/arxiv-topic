@@ -48,3 +48,9 @@ def load_object(filepath):
     """Load saved Python object."""
     obj = pickle.load(open(filepath, "rb"))
     return obj
+
+
+def create_directory_if_not_exists(dir_path):
+    """Create directory if it does not exist."""
+    if not os.path.exists(dir_path):
+        os.makedirs(dir_path)
