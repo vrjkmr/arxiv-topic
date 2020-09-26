@@ -2,7 +2,7 @@
 
 This repository contains the code for a [Latent Dirichlet Allocation (LDA)](https://www.jmlr.org/papers/volume3/blei03a/blei03a.pdf) topic model built and trained on the abstracts of ~160,000 ML-related research papers from the [ArXiv.org dataset](https://www.kaggle.com/Cornell-University/arxiv) on Kaggle. 
 
-Below is an example prediction of topics in the paper ["Why Molière most likely did write his plays"](https://arxiv.org/abs/2001.01595) by Cafiero and Camps.
+To illustrate, shown below is an example of the model's ability to predict topics present in the paper ["Why Molière most likely did write his plays"](https://arxiv.org/abs/2001.01595) by Cafiero and Camps (2020).
 
 ```
 Paper
@@ -23,8 +23,8 @@ morphosyntactic sequences, and function words do not give any clue that another
 author among the major playwrights of the time would have written the plays
 signed under the name Molière.
 
-Topics
-------
+Predicted topics
+----------------
 [('Natural language processing', 0.38158375),
  ('Paper-related', 0.298497),
  ('ML-related terms?', 0.091592446)]
@@ -69,8 +69,8 @@ predictions = topic_model.predict(abstract)
 print(predictions)
 
 '''
-Output:
-
+Output
+------
 [('Paper-related', 0.25155145),
  ('Computer vision', 0.18688545),
  ('ML-related terms?', 0.17415679)]
