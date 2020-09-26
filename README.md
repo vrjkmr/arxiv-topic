@@ -26,7 +26,7 @@ signed under the name Molière.
 Predicted topics
 ----------------
 [('Natural language processing', 0.38158375),
- ('Paper-related', 0.298497),
+ ('Paper-related terms?', 0.298497),
  ('ML-related terms?', 0.091592446)]
 ```
 
@@ -54,6 +54,8 @@ The final model achieved a coherence score of 49.9%. While this score is quite l
 
 ### Model inference
 
+To predict which topics might be related to any paper on arXiv, simply build a `TopicModel` object, scrape the abstract section, and pass in the raw text into the model's `predict()` method. The output is an ordered list of tuples, with each tuple holding the topic name and the likelihood of the topic's presence in the paper.
+
 ```python
 from model import TopicModel
 from utils import scrape_arxiv_abstract
@@ -71,7 +73,7 @@ print(predictions)
 '''
 Output
 ------
-[('Paper-related', 0.25155145),
+[('Paper-related terms?', 0.25155145),
  ('Computer vision', 0.18688545),
  ('ML-related terms?', 0.17415679)]
 '''
