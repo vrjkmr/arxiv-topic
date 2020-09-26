@@ -31,7 +31,7 @@ from model import TopicModel
 from utils import scrape_arxiv_abstract
 
 model = TopicModel()
-model = model.load("./models/model_001.obj")
+model = model.load("./models/model_001")
 
 paper_url = "https://arxiv.org/abs/1706.03762"
 abstract = scrape_arxiv_abstract(paper_url)
