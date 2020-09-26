@@ -78,3 +78,6 @@ Output
  ('ML-related terms?', 0.17415679)]
 '''
 ```
+### Acknowledgements
+
+1. Radim Řehůřek's [tutorial](https://radimrehurek.com/gensim/auto_examples/tutorials/run_lda.html) on building a Gensim LDA model
