@@ -1,6 +1,34 @@
 # ArXiv Topic Modeling
 
-This repository contains the code for a [Latent Dirichlet Allocation (LDA)](https://www.jmlr.org/papers/volume3/blei03a/blei03a.pdf) topic model built and trained on the abstracts of ~160,000 ML-related research papers from the [ArXiv.org dataset](https://www.kaggle.com/Cornell-University/arxiv) on Kaggle.
+This repository contains the code for a [Latent Dirichlet Allocation (LDA)](https://www.jmlr.org/papers/volume3/blei03a/blei03a.pdf) topic model built and trained on the abstracts of ~160,000 ML-related research papers from the [ArXiv.org dataset](https://www.kaggle.com/Cornell-University/arxiv) on Kaggle. 
+
+Below is an example prediction of topics in the paper ["Why Molière most likely did write his plays"](https://arxiv.org/abs/2001.01595) by Cafiero and Camps.
+
+```
+Paper
+-----
+"Why Molière most likely did write his plays" (Cafiero & Camps, 2020)
+
+Abstract
+--------
+  As for Shakespeare, a hard-fought debate has emerged about Molière, a
+supposedly uneducated actor who, according to some, could not have written the
+masterpieces attributed to him. In the past decades, the century-old thesis
+according to which Pierre Corneille would be their actual author has become
+popular, mostly because of new works in computational linguistics. These
+results are reassessed here through state-of-the-art attribution methods. We
+study a corpus of comedies in verse by major authors of Molière and
+Corneille's time. Analysis of lexicon, rhymes, word forms, affixes,
+morphosyntactic sequences, and function words do not give any clue that another
+author among the major playwrights of the time would have written the plays
+signed under the name Molière.
+
+Topics
+------
+[('Natural language processing', 0.38158375),
+ ('Paper-related', 0.298497),
+ ('ML-related terms?', 0.091592446)]
+```
 
 ### Motivation
 
@@ -30,10 +58,21 @@ The final model achieved a coherence score of 49.9%. While this score is quite l
 from model import TopicModel
 from utils import scrape_arxiv_abstract
 
-model = TopicModel()
-model = model.load("./models/model_001")
+lda_filepath = "./models/model_001"
+dataset_filepath = "./data/dataset.obj"
+topic_model = TopicModel(lda_filepath, dataset_filepath)
 
-paper_url = "https://arxiv.org/abs/1706.03762"
+# Paper: "Future Frame Prediction of a Video Sequence" (Kaur & Das, 2020)
+paper_url = "https://arxiv.org/abs/2009.08825"
 abstract = scrape_arxiv_abstract(paper_url)
-print(model.predict(abstract))
+predictions = topic_model.predict(abstract)
+print(predictions)
+
+'''
+Output:
+
+[('Paper-related', 0.25155145),
+ ('Computer vision', 0.18688545),
+ ('ML-related terms?', 0.17415679)]
+'''
 ```
