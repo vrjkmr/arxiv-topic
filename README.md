@@ -1,6 +1,18 @@
 # ArXiv Topic Modeling
 
-This repository contains the code for a [Latent Dirichlet Allocation (LDA)](https://www.jmlr.org/papers/volume3/blei03a/blei03a.pdf) topic model built and trained on the abstracts of ~160,000 ML-related research papers from the [ArXiv.org dataset](https://www.kaggle.com/Cornell-University/arxiv) on Kaggle. 
+This repository contains the code for a [Latent Dirichlet Allocation (LDA)](https://www.jmlr.org/papers/volume3/blei03a/blei03a.pdf) topic model built and trained on the abstracts of ~160,000 ML-related research papers from the [ArXiv.org dataset](https://www.kaggle.com/Cornell-University/arxiv) on Kaggle.
+
+```
+TODO:
+
+1. [ ] Add docstrings to `TopicModel` class
+2. [ ] Clean up code
+    - [ ] Training + hyperparameter tuning
+    - [ ] Model inference
+3. [ ] Build a good model
+4. [ ] Remove `train.py`
+5. [ ] Add project structure section
+```
 
 To illustrate, shown below is an example of the model's ability to predict topics present in the paper ["Why Molière most likely did write his plays"](https://arxiv.org/abs/2001.01595) by Cafiero and Camps (2020).
 
