@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 import json
 import pickle
+import requests
+from bs4 import BeautifulSoup
 from gensim.corpora import Dictionary
 
 
@@ -54,3 +56,16 @@ def create_directory_if_not_exists(dir_path):
     """Create directory if it does not exist."""
     if not os.path.exists(dir_path):
         os.makedirs(dir_path)
+
+
+def scrape_arxiv_abstract(paper_url):
+    """Scrape arXiv abstract from url."""
+    try:
+        page = requests.get(paper_url)
+        soup = BeautifulSoup(page.content, "html.parser")
+        abstract = soup.find("blockquote", {"class": "abstract mathjax"})
+        abstract.span.decompose()
+        return abstract.text
+    except Exception as e:
+        print(e)
+        raise

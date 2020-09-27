@@ -28,13 +28,16 @@ class ArXivDataset:
     def __init__(self):
         pass
 
-    def from_tokenized(self, tokenized_filepath, preprocessor_filepath):
+    @staticmethod
+    def from_tokenized(tokenized_filepath, preprocessor_filepath):
         """Load tokenized documents and preprocessor."""
-        self.documents = load_documents(tokenized_filepath)
-        self.processor = load_object(preprocessor_filepath)
-        self.build_corpus()
-        return self
+        dataset = ArXivDataset()
+        dataset.documents = load_documents(tokenized_filepath)
+        dataset.processor = load_object(preprocessor_filepath)
+        dataset.build_corpus()
+        return dataset
 
+    @staticmethod
     def from_metadata(self,
                       filepath,
                       additional_stopwords=[],
@@ -44,22 +47,21 @@ class ArXivDataset:
         """Load and process documents from metadata."""
         metadata = load_arxiv_metadata(filepath)
         abstracts = extract_abstracts(metadata)
-        self.processor = ArXivPreprocessor()
-        self.documents = self.processor.fit_transform(abstracts,
-                                                      additional_stopwords,
-                                                      max_n, n_gram_threshold,
-                                                      pos_tags)
-        self.build_corpus()
-        return self
+        dataset = ArXivDataset()
+        dataset.processor = ArXivPreprocessor()
+        documents = dataset.processor.fit_transform(abstracts,
+                                                    additional_stopwords,
+                                                    max_n, n_gram_threshold,
+                                                    pos_tags)
+        dataset.documents = documents
+        dataset.build_corpus()
+        return dataset
 
-    def from_dataset(self, filepath):
+    @staticmethod
+    def load(filepath):
         """Load ArXivDataset object."""
         dataset = load_object(filepath)
-        self.processor = dataset.processor
-        self.documents = dataset.documents
-        self.idx2word = dataset.idx2word
-        self.corpus = dataset.corpus
-        return self
+        return dataset
 
     def build_corpus(self):
         """Build word dictionary and corpus."""
@@ -74,7 +76,7 @@ class ArXivDataset:
     def to_bow(self, documents):
         return [self.idx2word.doc2bow(doc) for doc in documents]
 
-    def export(self, filepath):
+    def save(self, filepath):
         """Export dataset."""
         export_object(self, filepath)
 
