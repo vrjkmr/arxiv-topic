@@ -14,7 +14,6 @@ TODO
 4. [ ] Update final README.md
     - [ ] Update examples
     - [ ] Update "Results: Topics" section
-    - [ ] Add project structure section
 ```
 
 To illustrate, shown below is an example of the model's ability to predict topics present in the paper ["Why Molière most likely did write his plays"](https://arxiv.org/abs/2001.01595) by Cafiero and Camps (2020).
@@ -53,6 +52,21 @@ In this project, my ultimate goal was to build an clustering model that can:
 
 1. Identify salient trends and sub-topics in machine learning research today, and
 2. Automatically predict the topic(s) explored in any given paper simply by looking at its abstract.
+
+### Project structure
+
+This project is organized as follows.
+
+```
+.
+├── dataset.py                          # script containing the dataset class
+├── model.py                            # script containing the topic model class
+├── preprocess.py                       # script containing the text preprocessor class
+├── utils.py                            # script containing helper functions
+├── Inference.ipynb                     # notebook illustrating how to predict topics of papers
+├── Training.ipynb                      # notebook to train and tune LDA models
+└── README.md
+```
 
 ### Results: Topics
 
@@ -95,4 +109,5 @@ Output
 ```
 ### Acknowledgements
 
-1. Radim Řehůřek's [tutorial](https://radimrehurek.com/gensim/auto_examples/tutorials/run_lda.html) on building a Gensim LDA model
+- Radim Řehůřek's [tips](https://radimrehurek.com/gensim/auto_examples/tutorials/run_lda.html) on building Gensim LDA models
+- Cornell University's [arXiv.org dataset](https://www.kaggle.com/Cornell-University/arxiv) hosted on Kaggle
