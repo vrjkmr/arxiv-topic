@@ -23,7 +23,10 @@ def extract_abstracts(metadata,
         paper = json.loads(item)
         for category in categories:
             if category in paper["categories"]:
-                abstracts.append(str(paper["abstract"]))
+                title = str(paper["title"])
+                abstract = str(paper["abstract"])
+                text = title + " " + abstract
+                abstracts.append(text)
                 break
     return abstracts
 

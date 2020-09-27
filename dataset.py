@@ -38,8 +38,7 @@ class ArXivDataset:
         return dataset
 
     @staticmethod
-    def from_metadata(self,
-                      filepath,
+    def from_metadata(filepath,
                       additional_stopwords=[],
                       max_n=3,
                       n_gram_threshold=100,
