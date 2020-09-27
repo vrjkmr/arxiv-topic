@@ -3,16 +3,15 @@
 This repository contains the code for a [Latent Dirichlet Allocation (LDA)](https://www.jmlr.org/papers/volume3/blei03a/blei03a.pdf) topic model built and trained on the abstracts of ~160,000 ML-related research papers from the [ArXiv.org dataset](https://www.kaggle.com/Cornell-University/arxiv) on Kaggle.
 
 ```
-TODO:
+TODO
+----
 
 1. [ ] Add dataset creation code
 2. [ ] Clean up code
     - [ ] Training + hyperparameter tuning
     - [ ] Model inference
 3. [ ] Build a good model
-4. [ ] Remove `train.py`
-5. [ ] Add docstrings to `TopicModel` class
-6. [ ] Update final README.md
+4. [ ] Update final README.md
     - [ ] Update examples
     - [ ] Update "Results: Topics" section
     - [ ] Add project structure section
