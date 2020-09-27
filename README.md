@@ -5,13 +5,17 @@ This repository contains the code for a [Latent Dirichlet Allocation (LDA)](http
 ```
 TODO:
 
-1. [ ] Add docstrings to `TopicModel` class
+1. [ ] Add dataset creation code
 2. [ ] Clean up code
     - [ ] Training + hyperparameter tuning
     - [ ] Model inference
 3. [ ] Build a good model
 4. [ ] Remove `train.py`
-5. [ ] Add project structure section
+5. [ ] Add docstrings to `TopicModel` class
+6. [ ] Update final README.md
+    - [ ] Update examples
+    - [ ] Update "Results: Topics" section
+    - [ ] Add project structure section
 ```
 
 To illustrate, shown below is an example of the model's ability to predict topics present in the paper ["Why Molière most likely did write his plays"](https://arxiv.org/abs/2001.01595) by Cafiero and Camps (2020).
