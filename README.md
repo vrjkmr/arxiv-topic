@@ -67,7 +67,7 @@ The final model achieved a `c_v` coherence score of 50.2%. While this score is q
 1. **Natural language processing:** "text", "knowledge", "language", "information", "semantic"
 2. **Probability and inference:** "model", "distribution", "inference", "bayesian", "parameter"
 3. **Computer vision:** "image", "object", "segmentation", "detection", "video"
-4. **Recommendation:** "user", "group", "item", "preference", "product"
+4. **Recommendation systems:** "user", "group", "item", "preference", "product"
 5. **Sequences and time-series:** "time", "dynamic", "series", "sequence", "temporal"
 6. **Reinforcement learning:** "agent", "policy", "environment", "game", "action"
 
