@@ -20,7 +20,10 @@ class TopicModel:
         Number of topics for the topic model.
 
     topic_names : array_like
-        List of topic names (of length num_topics).
+        List of topic names.
+
+    topics : array_like
+        List of (topic_name, topic_terms) tuples.
 
     """
 
