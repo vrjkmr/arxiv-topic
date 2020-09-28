@@ -92,7 +92,7 @@ print(predictions)
 '''
 Output
 ------
-[('Recommendation', 0.32558212),
+[('Recommendation systems', 0.32558212),
  ('Deep learning', 0.17530766),
  ('Paper-related terms?', 0.16065647)]
 '''
