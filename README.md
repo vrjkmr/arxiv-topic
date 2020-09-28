@@ -53,9 +53,10 @@ This project is organized as follows.
 ├── model.py                            # script containing the topic model class
 ├── preprocess.py                       # script containing the text preprocessor class
 ├── utils.py                            # script containing helper functions
-├── Dataset preparation.ipynb           # notebook to build the arXiv abstracts dataset
-├── Inference.ipynb                     # notebook illustrating how to predict topics of papers
-├── Training.ipynb                      # notebook to train and tune LDA models
+└── notebooks/
+    ├── Dataset preparation.ipynb           # notebook to build the arXiv abstracts dataset
+    ├── Inference.ipynb                     # notebook illustrating how to predict topics of papers
+    └── Training.ipynb                      # notebook to train and tune LDA models
 └── README.md
 ```
 
