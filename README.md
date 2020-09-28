@@ -2,46 +2,36 @@
 
 This repository contains the code for a [Latent Dirichlet Allocation (LDA)](https://www.jmlr.org/papers/volume3/blei03a/blei03a.pdf) topic model built and trained on the abstracts of ~160,000 ML-related research papers from the [ArXiv.org dataset](https://www.kaggle.com/Cornell-University/arxiv) on Kaggle.
 
-```
-TODO
-----
-
-1. [ ] Add dataset creation code
-2. [ ] Clean up code
-    - [ ] Training + hyperparameter tuning
-    - [ ] Model inference
-3. [ ] Build a good model
-4. [ ] Update final README.md
-    - [ ] Update examples
-    - [ ] Update "Results: Topics" section
-```
-
-To illustrate, shown below is an example of the model's ability to predict topics present in the paper ["Why Molière most likely did write his plays"](https://arxiv.org/abs/2001.01595) by Cafiero and Camps (2020).
+To illustrate, shown below is an example of the model's ability to predict topics present in the seminal paper ["Attention Is All You Need"](https://arxiv.org/abs/2001.01595) by Vaswani et al. (2017).
 
 ```
 Paper
 -----
-"Why Molière most likely did write his plays" (Cafiero & Camps, 2020)
+"Attention Is All You Need" by Vaswani et al. (2017)
 
 Abstract
 --------
-  As for Shakespeare, a hard-fought debate has emerged about Molière, a
-supposedly uneducated actor who, according to some, could not have written the
-masterpieces attributed to him. In the past decades, the century-old thesis
-according to which Pierre Corneille would be their actual author has become
-popular, mostly because of new works in computational linguistics. These
-results are reassessed here through state-of-the-art attribution methods. We
-study a corpus of comedies in verse by major authors of Molière and
-Corneille's time. Analysis of lexicon, rhymes, word forms, affixes,
-morphosyntactic sequences, and function words do not give any clue that another
-author among the major playwrights of the time would have written the plays
-signed under the name Molière.
+  The dominant sequence transduction models are based on complex recurrent or
+convolutional neural networks in an encoder-decoder configuration. The best
+performing models also connect the encoder and decoder through an attention
+mechanism. We propose a new simple network architecture, the Transformer, based
+solely on attention mechanisms, dispensing with recurrence and convolutions
+entirely. Experiments on two machine translation tasks show these models to be
+superior in quality while being more parallelizable and requiring significantly
+less time to train. Our model achieves 28.4 BLEU on the WMT 2014
+English-to-German translation task, improving over the existing best results,
+including ensembles by over 2 BLEU. On the WMT 2014 English-to-French
+translation task, our model establishes a new single-model state-of-the-art
+BLEU score of 41.8 after training for 3.5 days on eight GPUs, a small fraction
+of the training costs of the best models from the literature. We show that the
+Transformer generalizes well to other tasks by applying it successfully to
+English constituency parsing both with large and limited training data.
 
 Predicted topics
 ----------------
-[('Natural language processing', 0.38158375),
- ('Paper-related terms?', 0.298497),
- ('ML-related terms?', 0.091592446)]
+[('Deep learning', 0.79083085),
+ ('Natural language processing', 0.17320967),
+ ('ML-related terms?', 0.023454767)]
 ```
 
 ### Motivation
@@ -93,8 +83,8 @@ lda_filepath = "./models/model_001"
 dataset_filepath = "./data/dataset.obj"
 topic_model = TopicModel(lda_filepath, dataset_filepath)
 
-# Paper: "Future Frame Prediction of a Video Sequence" (Kaur & Das, 2020)
-paper_url = "https://arxiv.org/abs/2009.08825"
+# Paper: "Personalized Re-ranking for Recommendation" by Pei et al. (2019)
+paper_url = "https://arxiv.org/abs/1904.06813"
 abstract = scrape_arxiv_abstract(paper_url)
 predictions = topic_model.predict(abstract)
 print(predictions)
@@ -102,9 +92,9 @@ print(predictions)
 '''
 Output
 ------
-[('Paper-related terms?', 0.25155145),
- ('Computer vision', 0.18688545),
- ('ML-related terms?', 0.17415679)]
+[('Recommendation', 0.32558212),
+ ('Deep learning', 0.17530766),
+ ('Paper-related terms?', 0.16065647)]
 '''
 ```
 ### Acknowledgements
