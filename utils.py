@@ -67,8 +67,11 @@ def scrape_arxiv_abstract(paper_url):
         page = requests.get(paper_url)
         soup = BeautifulSoup(page.content, "html.parser")
         abstract = soup.find("blockquote", {"class": "abstract mathjax"})
+        title = soup.find("h1", {"class": "title mathjax"})
         abstract.span.decompose()
-        return abstract.text
+        title.span.decompose()
+        return title.text + "\n" + abstract.text
+
     except Exception as e:
         print(e)
         raise
