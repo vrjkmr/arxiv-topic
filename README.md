@@ -43,6 +43,26 @@ In this project, my ultimate goal was to build an clustering model that can:
 1. Identify salient trends and sub-topics in machine learning research today, and
 2. Automatically predict the topic(s) explored in any given paper simply by looking at its abstract.
 
+### Pre-processing
+
+A variety of techniques were used to preprocess the texts, namely:
+
+1. Stopword removal
+2. LaTex equation removal
+3. N-gram-based phrase detection
+3. Lemmatization
+
+### Training
+
+After hyperparameter tuning, the final model is as follows:
+
+| Hyperparameter | Value |
+| --- | --- |
+| `num_topics` | 12 |
+| `passes` | 5 |
+| `iterations` | 50 |
+| `chunk_size` | 2000 |
+
 ### Project structure
 
 This project is organized as follows.
