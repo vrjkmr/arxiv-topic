@@ -2,7 +2,7 @@
 
 This repository contains the code for a [Latent Dirichlet Allocation (LDA)](https://www.jmlr.org/papers/volume3/blei03a/blei03a.pdf) topic model built and trained on the abstracts of ~160,000 ML-related research papers from the [ArXiv.org dataset](https://www.kaggle.com/Cornell-University/arxiv) on Kaggle.
 
-To illustrate, shown below is an example of the model's ability to predict topics present in the seminal paper ["Attention Is All You Need"](https://arxiv.org/abs/2001.01595) by Vaswani et al. (2017).
+This model can be used to detect topics in any given arXiv paper related to machine learning. To illustrate, shown below is an example of the model's ability to predict topics present in the seminal paper ["Attention Is All You Need"](https://arxiv.org/abs/2001.01595) by Vaswani et al. (2017).
 
 ```
 Paper
