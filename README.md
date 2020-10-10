@@ -83,6 +83,9 @@ lda_filepath = "./models/model_001"
 dataset_filepath = "./data/dataset.obj"
 topic_model = TopicModel(lda_filepath, dataset_filepath)
 
+# Optional: Set topic names
+topic_model.set_topic_names([...])
+
 # Paper: "Personalized Re-ranking for Recommendation" by Pei et al. (2019)
 paper_url = "https://arxiv.org/abs/1904.06813"
 abstract = scrape_arxiv_abstract(paper_url)
