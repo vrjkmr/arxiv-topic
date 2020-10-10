@@ -29,9 +29,9 @@ English constituency parsing both with large and limited training data.
 
 Predicted topics
 ----------------
-[('Deep learning', 0.79083085),
- ('Natural language processing', 0.17320967),
- ('ML-related terms?', 0.023454767)]
+[('Deep learning', 0.7827023),
+ ('Natural language processing', 0.18202062),
+ ('ML-related terms?', 0.022977384)]
 ```
 
 ### Motivation
